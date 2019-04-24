@@ -2,4 +2,7 @@
 Name: eventbrite
 ---
 
+Page:
+  extensions:
+    - DorsetDigital\SilverStripeEventBrite\Extension\PageExtension
 

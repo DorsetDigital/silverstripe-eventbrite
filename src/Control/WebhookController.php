@@ -15,7 +15,10 @@ class WebhookController extends ContentController
             mkdir($dir);
         }
 
-        file_put_contents($dir.DIRECTORY_SEPARATOR.time().".txt", print_r($request->requestVars(), true));
+        $stamp = time();
+
+        file_put_contents($dir.DIRECTORY_SEPARATOR.$stamp.".txt", print_r($request->requestVars(), true));
+        file_put_contents($dir.DIRECTORY_SEPARATOR.$stamp.".body.txt", $request->getBody());
         return "OK";
     }
 }
