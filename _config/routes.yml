@@ -1,5 +1,5 @@
 ---
-Name: webhookroutes
+Name: eventbriteroutes
 After:
   - '#rootroutes'
   - '#coreroutes'
@@ -7,3 +7,4 @@ After:
 SilverStripe\Control\Director:
   rules:
     'eventbrite': 'DorsetDigital\SilverStripeEventBrite\Control\WebhookController'
+    'viewevent': 'DorsetDigital\SilverStripeEventBrite\Control\EventController'

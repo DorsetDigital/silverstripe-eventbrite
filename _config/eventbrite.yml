@@ -6,3 +6,5 @@ Page:
   extensions:
     - DorsetDigital\SilverStripeEventBrite\Extension\PageExtension
 
+DorsetDigital\SilverStripeEventBrite\Control\EventController:
+  url_segment: 'viewevent'

@@ -18,12 +18,16 @@ class EventSync extends BuildTask
             $id = $event['id'];
             $eventObject = Event::findOrMakeByID($id);
             $eventObject->Title = $event['name']['text'];
-            $eventObject->Description = $event['description']['html'];
             $eventObject->EBURL = $event['url'];
             $eventObject->Start = $event['start']['local'];
             $eventObject->End = $event['end']['local'];
             $eventObject->Status = $event['status'];
             $eventObject->Image = $event['logo']['original']['url'];
+            $eventObject->Summary = $event['summary'];
+
+            $description = $eb->getEventDescription($id);
+            $eventObject->Description = $description;
+
             $eventObject->write();
 
             echo "<br/>Event ID ".$id." (".$event['name']['text'].") updated";

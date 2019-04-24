@@ -62,4 +62,20 @@ class EventBriteConnector
         $obj = json_decode($body, true);
         return $obj;
     }
+
+
+    public function getEventDescription($eventID) {
+        $vars = [
+            'token' => $this->config()->get('personal_token')
+        ];
+        $eventData = $this->client->request('GET', 'events/'.$eventID.'/description', ['query' => $vars]);
+        if ($eventData->getStatusCode() > 300) {
+            throw new \Exception('Error communicating with EventBrite');
+        }
+        $body = $eventData->getBody();
+        $obj = json_decode($body, true);
+        if (isset($obj['description'])) {
+            return $obj['description'];
+        }
+    }
 }

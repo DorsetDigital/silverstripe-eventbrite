@@ -2,10 +2,14 @@
 
 namespace DorsetDigital\SilverStripeEventBrite\DataObject;
 
+use DorsetDigital\SilverStripeEventBrite\Control\EventController;
 use SilverStripe\ORM\DataObject;
 
 class Event extends DataObject
 {
+
+    use DoCommon;
+
     private static $table_name = 'DD_Event';
     private static $singular_name = 'Event';
     private static $plural_name = 'Events';
@@ -18,7 +22,9 @@ class Event extends DataObject
         'EBURL' => 'Varchar(1000)',
         'Start' => 'Datetime',
         'End' => 'Datetime',
-        'Image' => 'Varchar(1000)'
+        'Image' => 'Varchar(1000)',
+        'URLSegment' => 'Varchar',
+        'Summary' => 'Varchar'
     ];
 
     private static $indexes = [
@@ -27,6 +33,7 @@ class Event extends DataObject
     ];
 
     private static $default_sort = 'Start';
+
 
     /**
      * Find an event based on the EventBrite ID.  If none exists, create it.
@@ -44,4 +51,26 @@ class Event extends DataObject
         }
         return $event;
     }
+
+    public function Link()
+    {
+        $pageslug = EventController::config()->get('url_segment');
+        return $pageslug . '/' . $this->URLSegment;
+    }
+
+    public function onBeforeWrite()
+    {
+        parent::onBeforeWrite();
+        $this->setURLField();
+    }
+
+    public function canView($member = null)
+    {
+        if ($this->Status == 'live') {
+            return true;
+        }
+        return false;
+    }
+
+
 }
