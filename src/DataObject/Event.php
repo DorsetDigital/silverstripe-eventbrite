@@ -34,6 +34,11 @@ class Event extends DataObject
 
     private static $default_sort = 'Start';
 
+    private static $summary_fields = [
+        'Title' => 'Title',
+        'Summary' => 'Summary',
+        'Start.Nice' => 'Event Start'
+    ];    
 
     /**
      * Find an event based on the EventBrite ID.  If none exists, create it.
