@@ -22,8 +22,9 @@
     <div class="row my-4">
         <div class="col-12 col-sm-6 eventpage__descriptionholder">
             $Description
-
-            <p class="my-4"><a class="btn btn-primary" href="$EBURL" target="_blank" rel="noopener">Click here for tickets</a></p>
+            <p class="my-4">
+            <a class="btn btn-primary" href="$SiteConfig.EventsURL" target="_blank" rel="noopener">Click here for tickets</a>
+            </p>
         </div>
         <div class="col-12 col-sm-6">
             <% if $Image %>
